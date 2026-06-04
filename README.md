@@ -364,7 +364,7 @@ SW2(config-if)# end
 
 ## 8. Video Demostrativo
 
-**[Ver demostración en YouTube]([https://youtube.com/enlace_aqui](https://youtu.be/UqLpedUFwP0))**
+**[Ver demostración en YouTube](https://youtu.be/UqLpedUFwP0)**
 
 **Duración:** 5:00 minutos
 
