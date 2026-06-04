@@ -289,7 +289,7 @@ La red reconverge automáticamente de vuelta al Root Bridge legítimo.
 | 2 | [02_spanning_tree_antes_sw1.png](screenshots/02_spanning_tree_antes_sw1.png) - [02_spanning_tree_antes_sw2.png](screenshots/02_spanning_tree_antes_sw2.png) | Salida de `show spanning-tree vlan 10` en SW1/SW2 **antes** del ataque — Root legítimo |
 | 3 | [03_script_ejecutandose.png](screenshots/03_script_ejecutandose.png) | Terminal de Kali Linux ejecutando el script STP Root Claim |
 | 4 | [04_spanning_tree_durante.png](screenshots/04_spanning_tree_durante.png) | SW2 reconociendo `0000.0000.0001` como nuevo Root Bridge |
-| 5  | [05_ping_estable_durante_ataque.png](05_ping_estable_durante_ataque.png) | Tráfico ICMP continuo desde VPC1 sin pérdida de paquetes, demostrando una reconvergencia transparente y la naturaleza sigilosa del ataque. |
+| 5  | [05_ping_estable_durante_ataque.png](screenshots/05_ping_estable_durante_ataque.png) | Tráfico ICMP continuo desde VPC1 sin pérdida de paquetes, demostrando una reconvergencia transparente y la naturaleza sigilosa del ataque. |
 | 6 | [06_contramedida_aplicada.png](screenshots/06_contramedida_aplicada.png) | Configuración de `spanning-tree bpduguard enable` en la interfaz del atacante |
 | 7 | [07_puerto_err_disabled.png](screenshots/07_puerto_err_disabled.png) | Puerto Et0/3 en estado `err-disabled` tras detectar el BPDU malicioso |
 
