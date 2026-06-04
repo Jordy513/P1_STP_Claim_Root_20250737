@@ -258,7 +258,7 @@ SW2# show spanning-tree vlan 10
 Verás que el Root ID cambió a la MAC `0000.0000.0001` con prioridad `0`, apuntando al puerto del atacante (`Et0/3`).
 
 ```cisco
-SW2# show spanning-tree vlan 1 detail
+SW2# show spanning-tree vlan 10 detail
 ```
 
 Observa el Root Port y los cambios de estado en los demás puertos.
