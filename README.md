@@ -364,9 +364,9 @@ SW2(config-if)# end
 
 ## 8. Video Demostrativo
 
-🎥 **[Ver demostración en YouTube](https://youtube.com/enlace_aqui)**
+🎥 **[Ver demostración en YouTube]([https://youtube.com/enlace_aqui](https://youtu.be/UqLpedUFwP0))**
 
-**Duración:** X:XX minutos
+**Duración:** 5:00 minutos
 
 **Contenido del video:**
 - ✅ Topología visible con nombre y matrícula
