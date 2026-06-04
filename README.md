@@ -237,8 +237,8 @@ cd P2_STP_Root_20250737
 ### Paso 2: Verificar el Root Bridge legítimo (ANTES del ataque)
 
 ```cisco
-SW1# show spanning-tree vlan 1
-SW2# show spanning-tree vlan 1
+SW1# show spanning-tree vlan 10
+SW2# show spanning-tree vlan 10
 ```
 
 Anota qué switch es el Root Bridge actual y su MAC.
@@ -252,7 +252,7 @@ sudo python3 STP_Claim_Root_Attack.py eth0
 ### Paso 4: Verificar el efecto en SW2
 
 ```cisco
-SW2# show spanning-tree vlan 1
+SW2# show spanning-tree vlan 10
 ```
 
 Verás que el Root ID cambió a la MAC `0000.0000.0001` con prioridad `0`, apuntando al puerto del atacante (`Et0/3`).
