@@ -286,7 +286,7 @@ La red reconverge automáticamente de vuelta al Root Bridge legítimo.
 | # | Archivo | Descripción |
 |---|---------|-------------|
 | 1 | [01_topologia.png](screenshots/01_topologia.png) | Vista general de la topología en PNETLab con nombre y matrícula visibles |
-| 2 | [02_spanning_tree_antes.png](screenshots/02_spanning_tree_antes.png) | Salida de `show spanning-tree vlan 10` en SW1/SW2 **antes** del ataque — Root legítimo |
+| 2 | [02_spanning_tree_antes_sw1.png](screenshots/02_spanning_tree_antes_sw1.png) - [02_spanning_tree_antes_sw2.png](screenshots/02_spanning_tree_antes_sw2.png) | Salida de `show spanning-tree vlan 10` en SW1/SW2 **antes** del ataque — Root legítimo |
 | 3 | [03_script_ejecutandose.png](screenshots/03_script_ejecutandose.png) | Terminal de Kali Linux ejecutando el script STP Root Claim |
 | 4 | [04_spanning_tree_durante.png](screenshots/04_spanning_tree_durante.png) | SW2 reconociendo `0000.0000.0001` como nuevo Root Bridge |
 | 5  | [05_ping_estable_durante_ataque.png](05_ping_estable_durante_ataque.png) | Tráfico ICMP continuo desde VPC1 sin pérdida de paquetes, demostrando una reconvergencia transparente y la naturaleza sigilosa del ataque. |
