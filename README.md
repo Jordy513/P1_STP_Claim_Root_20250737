@@ -38,14 +38,14 @@ Este laboratorio se realiza íntegramente en un entorno controlado y virtualizad
 
 ## 2. Objetivo del Script
 
-El script `STP_Claim_Root_Attack.py` utiliza la librería **Scapy** para construir e inyectar de manera constante **BPDUs (Bridge Protocol Data Units)** manipuladas hacia los switches de la red.
+El script `JordyRosario_20250737_STP_Claim_Root.py` utiliza la librería **Scapy** para construir e inyectar de manera constante **BPDUs (Bridge Protocol Data Units)** manipuladas hacia los switches de la red.
 
 El código establece los valores de `rootid` y `bridgeid` a `0` (la prioridad más alta en STP) e inventa una dirección MAC numéricamente inferior a la de cualquier equipo Cisco legítimo. Estos paquetes se envían cada 2 segundos a la dirección multicast reservada `01:80:C2:00:00:00`, engañando a los switches para que reconozcan al atacante como el Root Bridge legítimo.
 
 ### 2.1 Parámetros de Uso
 
 ```bash
-sudo python3 STP_Claim_Root_Attack.py [INTERFAZ]
+sudo python3 JordyRosario_20250737_STP_Claim_Root.py [INTERFAZ]
 ```
 
 | Parámetro | Descripción | Requerido | Ejemplo |
@@ -55,10 +55,10 @@ sudo python3 STP_Claim_Root_Attack.py [INTERFAZ]
 **Ejemplos de uso:**
 ```bash
 # Usando la interfaz por defecto (eth0)
-sudo python3 STP_Claim_Root_Attack.py
+sudo python3 JordyRosario_20250737_STP_Claim_Root.py
 
 # Especificando una interfaz diferente
-sudo python3 STP_Claim_Root_Attack.py eth1
+sudo python3 JordyRosario_20250737_STP_Claim_Root.py eth1
 ```
 
 ### 2.2 Requisitos del Sistema
@@ -230,8 +230,8 @@ ip addr show eth0
 pip install scapy
 
 # Clonar el repositorio
-git clone https://github.com/Jordy513/P2_STP_Root_20250737.git
-cd P2_STP_Root_20250737
+git clone https://github.com/Jordy513/P1_STP_Claim_Root_20250737.git
+cd P1_STP_Claim_Root_20250737
 ```
 
 ### Paso 2: Verificar el Root Bridge legítimo (ANTES del ataque)
@@ -246,7 +246,7 @@ Anota qué switch es el Root Bridge actual y su MAC.
 ### Paso 3: Lanzar el ataque
 
 ```bash
-sudo python3 STP_Claim_Root_Attack.py eth0
+sudo python3 JordyRosario_20250737_STP_Claim_Root.py eth0
 ```
 
 ### Paso 4: Verificar el efecto en SW2
@@ -263,13 +263,13 @@ SW2# show spanning-tree vlan 10 detail
 
 Observa el Root Port y los cambios de estado en los demás puertos.
 
-### Paso 5: Verificar el DoS (ping desde VPC1)
+### Paso 5: Verificar el DoS si la topologia es redundante (ping desde VPC1)
 
 ```
-VPC1> ping 20.25.37.1 repeat 1000
+VPC1> ping 20.25.37.1 -c 1000
 ```
 
-Durante la reconvergencia STP los paquetes caerán evidenciando la interrupción de servicio.
+Durante la reconvergencia STP si la topologia es redundante los paquetes caerán evidenciando la interrupción de servicio, en este caso al no ser una topologia redundante para el usuario en un cliente legitimo el ataque es inperceptible.
 
 ### Paso 6: Detener el ataque
 
