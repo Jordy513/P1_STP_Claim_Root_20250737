@@ -199,18 +199,18 @@ while True:
    └─────────────┘
 ```
 
-> Ver imagen de topología: `screenshots/topologia.png`
+> Ver imagen de topología: [01_topologia](screenshots/topologia.png)
 
 ### 4.2 Tabla de Dispositivos y Direccionamiento IP
 
-El esquema de red utiliza la subred `10.25.73.0/24` derivada de la matrícula `20250737`.
+El esquema de red utiliza la subred `20.25.37.0/24` derivada de la matrícula `20250737`.
 
 | Dispositivo | Tipo | Interfaz | IP | VLAN | Rol |
 |-------------|------|----------|----|------|-----|
-| **R1** | Router IOL | e0/0 | 10.25.73.1/24 | VLAN 10 | Default Gateway + Servidor DHCP |
+| **R1** | Router IOL | e0/0 | 20.25.37.1/24 | VLAN 10 | Default Gateway + Servidor DHCP |
 | **SW1** | Switch IOL | e0/0, e0/1 | N/A | Trunk 802.1Q | Switch Core / Distribución |
 | **SW2** | Switch IOL | e0/0–e0/3 | N/A | e0/0 Trunk; e0/1–e0/3 Access VLAN 10 | Switch de Acceso |
-| **Kali Linux** | VM QEMU | eth0 (e0/3 SW2), e1 | 10.25.73.100/24 | VLAN 10 (Access) | Nodo Atacante |
+| **Kali Linux** | VM QEMU | eth0 (e0/3 SW2), e1 | 20.25.37.100/24 | VLAN 10 (Access) | Nodo Atacante |
 | **VPC1** | VPC | eth0 | DHCP (rango .0/24) | VLAN 10 | Cliente Legítimo (Víctima A) |
 | **VPC2** | VPC | eth0 | DHCP (rango .0/24) | VLAN 10 | Cliente Legítimo (Víctima B) |
 
@@ -266,7 +266,7 @@ Observa el Root Port y los cambios de estado en los demás puertos.
 ### Paso 5: Verificar el DoS (ping desde VPC1)
 
 ```
-VPC1> ping 10.25.73.1 repeat 1000
+VPC1> ping 20.25.37.1 repeat 1000
 ```
 
 Durante la reconvergencia STP los paquetes caerán evidenciando la interrupción de servicio.
@@ -285,15 +285,15 @@ La red reconverge automáticamente de vuelta al Root Bridge legítimo.
 
 | # | Archivo | Descripción |
 |---|---------|-------------|
-| 1 | `screenshots/01_topologia.png` | Vista general de la topología en PNETLab con nombre y matrícula visibles |
-| 2 | `screenshots/02_spanning_tree_antes.png` | Salida de `show spanning-tree vlan 1` en SW1/SW2 **antes** del ataque — Root legítimo |
-| 3 | `screenshots/03_script_ejecutandose.png` | Terminal de Kali Linux ejecutando el script STP Root Claim |
-| 4 | `screenshots/04_spanning_tree_durante.png` | SW2 reconociendo `0000.0000.0001` como nuevo Root Bridge |
-| 5 | `screenshots/05_ping_cayendo.png` | Paquetes ICMP fallando desde VPC1 durante la reconvergencia (DoS) |
-| 6 | `screenshots/06_contramedida_aplicada.png` | Configuración de `spanning-tree bpduguard enable` en la interfaz del atacante |
-| 7 | `screenshots/07_puerto_err_disabled.png` | Puerto Et0/3 en estado `err-disabled` tras detectar el BPDU malicioso |
+| 1 | [01_topologia.png](screenshots/01_topologia.png) | Vista general de la topología en PNETLab con nombre y matrícula visibles |
+| 2 | [02_spanning_tree_antes.png](screenshots/02_spanning_tree_antes.png) | Salida de `show spanning-tree vlan 1` en SW1/SW2 **antes** del ataque — Root legítimo |
+| 3 | [03_script_ejecutandose.png](screenshots/03_script_ejecutandose.png) | Terminal de Kali Linux ejecutando el script STP Root Claim |
+| 4 | [04_spanning_tree_durante.png](screenshots/04_spanning_tree_durante.png) | SW2 reconociendo `0000.0000.0001` como nuevo Root Bridge |
+| 5 | [05_ping_cayendo.png](screenshots/05_ping_cayendo.png) | Paquetes ICMP fallando desde VPC1 durante la reconvergencia (DoS) |
+| 6 | [06_contramedida_aplicada.png](screenshots/06_contramedida_aplicada.png) | Configuración de `spanning-tree bpduguard enable` en la interfaz del atacante |
+| 7 | [07_puerto_err_disabled.png](screenshots/07_puerto_err_disabled.png) | Puerto Et0/3 en estado `err-disabled` tras detectar el BPDU malicioso |
 
-> *Las capturas se encuentran en la carpeta `/screenshots` de este repositorio.*
+> *Las capturas se encuentran en la carpeta [/screenshots](/screenshots/README.md) de este repositorio.*
 
 ---
 
